@@ -22,10 +22,10 @@ date_default_timezone_set('Asia/Jakarta');
 // ====================
 // KONFIGURASI DATABASE
 // ====================
-$db_host = 'sql103.byethost22.com';
-$db_name = 'b22_37265128_demoinvoicegenerator';
-$db_user = 'b22_37265128';
-$db_pass = 'YnScc89#';
+$db_host = 'localhost';
+$db_name = 'demoinvoicegenerator';
+$db_user = 'root';
+$db_pass = '';
 
 
 try {
@@ -315,7 +315,6 @@ if (!empty($last_input_values_for_form) && !empty($last_input_values_for_form['n
     else { $courier_name_a6 = $last_input_values_for_form['courier_name'] ?? 'Tidak Diketahui'; if($courier_name_a6 !== 'Tidak Diketahui' && empty($courier_key_a6)){ $fk = array_search($courier_name_a6, $available_couriers); if($fk !== false) $courier_key_a6 = $fk;}}
     $is_express_a6 = in_array($courier_key_a6, ['grab', 'gosend', 'spx']);
     $shipping_date_a6 = date('d/m/Y', strtotime('+4 days'));
-    // DIHAPUS: Logika 'if better'
     if ($courier_key_a6 === 'jneyes') $shipping_date_a6 = date('d/m/Y',strtotime('+1 day')); elseif ($is_express_a6) $shipping_date_a6 = date('d/m/Y H:i',strtotime('+3 hours'));
     $logo_path_a6 = $logos_dir . 'default.png'; if(!empty($courier_key_a6) && file_exists($logos_dir.$courier_key_a6.'.png')) $logo_path_a6=$logos_dir.$courier_key_a6.'.png';
 
@@ -376,7 +375,6 @@ $js_couriers_with_optional_ongkir = json_encode($couriers_with_optional_ongkir);
     <link rel="icon" type="image/x-icon" href="logo.png">
     <title>Invoice Generator</title>
 <style>
-    /* ... (CSS Anda tidak perlu diubah, jadi saya akan membiarkannya seperti semula) ... */
     html, body {
         height: 100%;
         margin: 0;
